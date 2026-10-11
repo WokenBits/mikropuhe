@@ -1,0 +1,8 @@
+# Note: these hashes were made with another first name in the test sentence than the
+# scripts in this copy use, so a new run prints other hashes for the three sophia files.
+to-file 207463cbc10b1dd04ecd8463e8d6942137efc58dfc8bd14a82106d190368214b
+redirected 207463cbc10b1dd04ecd8463e8d6942137efc58dfc8bd14a82106d190368214b
+piped-in 207463cbc10b1dd04ecd8463e8d6942137efc58dfc8bd14a82106d190368214b
+file-name 52f50021b1fbd0b0d97e914f96deda0cb82f122d36330e38e8bcaf7fe4e46d1c
+pcspeaker-386-cone 00002de9b25ce5a4928c8b514c0c133516e6b041107cf742ab4da2683c674244
+pcspeaker-xt-none b0c274ac52b9a4f16c33e1452e9863dff318db3d1238a36f9c39d98f40c2a7b5

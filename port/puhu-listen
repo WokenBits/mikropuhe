@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+"""puhu-listen: play, on this machine, what puhu says on another one.
+
+Run it on the machine with the loudspeakers (the Mac). puhu on the remote machine hands each
+recording to `nc`, which sends it through an SSH tunnel to this program; it plays the recording and
+only then closes the connection, so the remote puhu waits until you have heard it, as it would with
+a sound card of its own.
+
+    puhu-listen --tunnel ai        # opens the SSH tunnel to host "ai" itself, then listens
+    puhu-listen                    # only listens; the tunnel is made some other way
+
+On the remote machine, once:   export PUHU_PLAY_CMD='nc -N 127.0.0.1 4714'   (in ~/.zshrc)
+
+Stop with Ctrl-C. Needs Python 3 and nothing else. Plays with afplay on macOS, otherwise with the
+first of pw-play, aplay, paplay, ffplay that exists; --player names another command, which gets the
+file name of a WAV file as its last argument.
+"""
+import argparse
+import os
+import shutil
+import signal
+import socket
+import subprocess
+import sys
+import tempfile
+import time
+
+LIMIT = 200 * 1024 * 1024  # refuse anything larger: this is speech
+
+
+def find_player():
+    for cmd in (["afplay"], ["pw-play"], ["aplay", "-q"], ["paplay"],
+                ["ffplay", "-loglevel", "quiet", "-nodisp", "-autoexit"]):
+        if shutil.which(cmd[0]):
+            return cmd
+    return None
+
+
+def wav_seconds(data):
+    """Duration of a WAV as puhu writes it (44-byte header), or None if it is not one."""
+    if len(data) < 44 or data[:4] != b"RIFF" or data[8:12] != b"WAVE":
+        return None
+    rate = int.from_bytes(data[24:28], "little")
+    block = int.from_bytes(data[32:34], "little")
+    return (len(data) - 44) / float(rate * block) if rate and block else None
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Play what a remote puhu says. See the text at the top of this file.")
+    ap.add_argument("--port", type=int, default=4714)
+    ap.add_argument("--tunnel", metavar="HOST",
+                    help="also run: ssh -N -R PORT:127.0.0.1:PORT HOST, and stop when it stops")
+    ap.add_argument("--player", help="command to play a WAV file (the file name is appended)")
+    a = ap.parse_args()
+
+    if os.environ.get("SSH_CONNECTION") and not a.player:
+        print("puhu-listen: this terminal is itself an SSH session (on %s). The listener belongs on the machine\n"
+              "             you are sitting at, the one with the loudspeakers; puhu runs here." % socket.gethostname())
+    player = a.player.split() if a.player else find_player()
+    if not player:
+        sys.exit("puhu-listen: no player found (afplay, pw-play, aplay, paplay, ffplay); name one with --player")
+
+    srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    try:
+        srv.bind(("127.0.0.1", a.port))
+    except OSError as e:
+        sys.exit("puhu-listen: cannot listen on 127.0.0.1:%d: %s (is another puhu-listen running?)" % (a.port, e))
+    srv.listen(16)
+    srv.settimeout(0.5)
+
+    tunnel = None
+    if a.tunnel:
+        cmd = ["ssh", "-N", "-o", "ExitOnForwardFailure=yes", "-o", "ServerAliveInterval=30",
+               "-R", "%d:127.0.0.1:%d" % (a.port, a.port), a.tunnel]
+        tunnel = subprocess.Popen(cmd)
+        print("puhu-listen: tunnel: %s" % " ".join(cmd))
+    print("puhu-listen: listening on 127.0.0.1:%d, playing with %s. Ctrl-C stops." % (a.port, player[0]))
+    sys.stdout.flush()
+
+    def stop(*_):
+        raise KeyboardInterrupt
+    signal.signal(signal.SIGTERM, stop)
+    try:
+        while True:
+            if tunnel and tunnel.poll() is not None:
+                sys.exit("puhu-listen: the SSH tunnel ended (exit status %d). On the remote machine the port may "
+                         "be taken by an older tunnel: check with  ss -ltn | grep %d" % (tunnel.returncode, a.port))
+            try:
+                conn, _ = srv.accept()
+            except socket.timeout:
+                continue
+            with conn:
+                conn.settimeout(30)
+                data = bytearray()
+                try:
+                    while len(data) <= LIMIT:
+                        chunk = conn.recv(65536)
+                        if not chunk:
+                            break
+                        data += chunk
+                except socket.timeout:
+                    print("puhu-listen: a connection sent nothing for 30 s; dropped")
+                    continue
+                secs = wav_seconds(data)
+                if secs is None or len(data) > LIMIT:
+                    print("puhu-listen: %d bytes that are not a WAV recording; ignored" % len(data))
+                    continue
+                f = tempfile.NamedTemporaryFile(prefix="puhu-", suffix=".wav", delete=False)
+                try:
+                    f.write(data)
+                    f.close()
+                    rc = subprocess.call(player + [f.name])
+                    print("%s  %.1f s%s" % (time.strftime("%H:%M:%S"), secs, "" if rc == 0 else
+                                            "  (the player exited with status %d)" % rc))
+                    sys.stdout.flush()
+                finally:
+                    os.unlink(f.name)
+            # leaving the "with" closes the connection: only now does the remote puhu carry on
+    except KeyboardInterrupt:
+        print("\npuhu-listen: stopped")
+    finally:
+        srv.close()
+        if tunnel and tunnel.poll() is None:
+            tunnel.terminate()
+
+
+if __name__ == "__main__":
+    main()

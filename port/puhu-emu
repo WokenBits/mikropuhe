@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""puhu-emu: speak Finnish text with the original MikroPuhe 1.0, run in a CPU emulator.
+
+This is the stop-gap Linux "port": the 1990 PUHU.EXE and its voice files do all
+the work inside tools/puhu_emu.py's harness; only the output stage is new.
+The native C port replaces this once it reproduces the same sample streams.
+
+    puhu-emu "hyvää päivää"                    play (paplay, pw-play, aplay or ffplay)
+    puhu-emu -o out.wav "hyvää päivää"         write WAV
+    puhu-emu -o out.mp3 -f teksti.txt          write MP3 (needs lame or ffmpeg)
+    echo "moi" | puhu-emu -o - | aplay         WAV on stdout
+    puhu-emu -v sophia -s 4 -V 4 "..."         voice, speed, volume
+
+Settings take 0..8 as in the original; without them the values saved in the
+voice file apply. Volume 4 is unity gain; the voices ship with 8, which clips.
+"""
+import argparse
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "..", "tools"))
+try:
+    from puhu_emu import PAUSE_SCALE_PC, SAMPLE_RATE, Dos, Exit, expand
+except ImportError:  # no unicorn in this interpreter: use the project venv on ai
+    venv = os.path.expanduser("~/tools/mikropuhe-venv/bin/python")
+    if os.path.exists(venv) and os.path.realpath(sys.executable) != os.path.realpath(venv):
+        os.execv(venv, [venv] + sys.argv)
+    raise
+
+VOICES = {"janne": "JAN", "kristian": "KRI", "sophia": "SOP"}
+
+
+def wav_bytes(pcm, rate, width=1):
+    import io
+    import wave
+    buf = io.BytesIO()
+    with wave.open(buf, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(width)
+        w.setframerate(rate)
+        w.writeframes(pcm)
+    return buf.getvalue()
+
+
+def pc_speaker(pcm):
+    """The PC-speaker stage: duty cycle of the 22 kHz pulse train per sample (table built at 0x152b7).
+
+    duty = 1/2 +- 1/2 * s / (64 + s/2) for s = |sample - 128|. Returned as 16-bit signed PCM.
+    """
+    import struct
+    table = []
+    for b in range(256):
+        s = abs(b - 128)
+        d = min(1.0, s / (64 + s // 2))
+        v = int(d * 30000 + 0.5)
+        table.append(v if b >= 128 else -v)
+    return struct.pack("<%dh" % len(pcm), *(table[b] for b in pcm))
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("text", nargs="*", help="text to speak (UTF-8); stdin if neither text nor -f is given")
+    ap.add_argument("-f", "--file", help="read the text from this file (UTF-8)")
+    ap.add_argument("-o", "--output", help="out.wav, out.mp3, or - for WAV on stdout; default: play")
+    ap.add_argument("-v", "--voice", choices=sorted(VOICES), help="default: janne")
+    ap.add_argument("-s", "--speed", type=int, choices=range(9), metavar="0-8", help="nopeus")
+    ap.add_argument("-p", "--pitch", type=int, choices=range(9), metavar="0-8", help="korkeus")
+    ap.add_argument("-r", "--pitch-variation", type=int, choices=range(9), metavar="0-8", help="korkeuden vaihtelu")
+    ap.add_argument("-V", "--volume", type=int, choices=range(9), metavar="0-8", help="voimakkuus (4 = unity)")
+    ap.add_argument("--consonants", type=int, choices=(0, 1), help="konsonanttien painotus")
+    ap.add_argument("--stress", type=int, choices=(0, 1), help="ensimmäisen tavun painotus")
+    ap.add_argument("--pc-speaker", action="store_true",
+                    help="apply the PC-speaker pulse-width curve (16-bit output) instead of the raw 8-bit samples")
+    ap.add_argument("--nominal-pauses", action="store_true",
+                    help="pause n = n samples, instead of the PC's timer-chip timing (n * 1.18)")
+    ap.add_argument("--voices-dir", default=os.path.join(HERE, "..", "original", "files"),
+                    help="directory with PUHU.EXE and the .SMP files")
+    a = ap.parse_args()
+
+    if a.file:
+        text = open(a.file, encoding="utf-8").read()
+    elif a.text:
+        text = " ".join(a.text)
+    else:
+        text = sys.stdin.read()
+    text = text.replace("\r\n", "\n").replace("\n", "\r\n")
+    if not text.endswith("\r\n"):
+        text += "\r\n"
+
+    opts = "/" + VOICES[a.voice or "janne"]
+    for code, val in (("NOP", a.speed), ("KOR", a.pitch), ("KRV", a.pitch_variation), ("VOI", a.volume),
+                      ("KNP", a.consonants), ("ETP", a.stress)):
+        if val is not None:
+            opts += "/%s%d" % (code, val)
+
+    with tempfile.NamedTemporaryFile(suffix=".txt") as tf:
+        tf.write(text.encode("cp437", errors="replace"))
+        tf.flush()
+        dos = Dos(os.path.join(a.voices_dir, "PUHU.EXE"), a.voices_dir, (" %s :INPUT.TXT" % opts).encode("cp437"),
+                  extra_files={"INPUT.TXT": tf.name})
+        try:
+            dos.run()
+        except Exit as e:
+            sys.exit("puhu-emu: the original program stopped: %s" % e)
+    if dos.exit_code != 0 or not dos.events:
+        sys.exit("puhu-emu: no speech produced (exit code %s); screen:\n%s" % (dos.exit_code, dos.screen()))
+
+    pcm = expand(dos.events, 1.0 if a.nominal_pauses else PAUSE_SCALE_PC)
+    wav = wav_bytes(pc_speaker(pcm), SAMPLE_RATE, 2) if a.pc_speaker else wav_bytes(pcm, SAMPLE_RATE)
+
+    out = a.output
+    if out == "-":
+        sys.stdout.buffer.write(wav)
+    elif out and out.lower().endswith(".mp3"):
+        if shutil.which("lame"):
+            cmd = ["lame", "--quiet", "-V", "4", "-", out]
+        elif shutil.which("ffmpeg"):
+            cmd = ["ffmpeg", "-loglevel", "error", "-y", "-i", "-", out]
+        else:
+            sys.exit("puhu-emu: MP3 output needs lame or ffmpeg")
+        subprocess.run(cmd, input=wav, check=True)
+    elif out:
+        open(out, "wb").write(wav)
+    else:
+        for player in (["paplay"], ["pw-play", "-"], ["aplay", "-q"], ["ffplay", "-loglevel", "error", "-nodisp",
+                                                                        "-autoexit", "-"]):
+            if shutil.which(player[0]):
+                if player[0] == "paplay":  # paplay wants a file name
+                    with tempfile.NamedTemporaryFile(suffix=".wav") as wf:
+                        wf.write(wav)
+                        wf.flush()
+                        sys.exit(subprocess.run(player + [wf.name]).returncode)
+                sys.exit(subprocess.run(player, input=wav).returncode)
+        sys.exit("puhu-emu: no audio player found (paplay, pw-play, aplay, ffplay); use -o")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,17 @@
+# file build/puhu.exe; x86_64-w64-mingw32-objdump -p build/puhu.exe | grep 'DLL Name'; size and sha256 (2026-10-11)
+puhu.exe: PE32+ executable for MS Windows 5.02 (console), x86-64 (stripped to external PDB), 11 sections
+	DLL Name: KERNEL32.dll
+	DLL Name: api-ms-win-crt-convert-l1-1-0.dll
+	DLL Name: api-ms-win-crt-environment-l1-1-0.dll
+	DLL Name: api-ms-win-crt-filesystem-l1-1-0.dll
+	DLL Name: api-ms-win-crt-heap-l1-1-0.dll
+	DLL Name: api-ms-win-crt-locale-l1-1-0.dll
+	DLL Name: api-ms-win-crt-math-l1-1-0.dll
+	DLL Name: api-ms-win-crt-private-l1-1-0.dll
+	DLL Name: api-ms-win-crt-runtime-l1-1-0.dll
+	DLL Name: api-ms-win-crt-stdio-l1-1-0.dll
+	DLL Name: api-ms-win-crt-string-l1-1-0.dll
+	DLL Name: SHELL32.dll
+	DLL Name: WINMM.dll
+88576 bytes
+f2ed910b2ac38378db9a4837b990977d6ffcac54dcc17f50bd99603a648b3e11  puhu.exe

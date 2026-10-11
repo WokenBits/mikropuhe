@@ -1,0 +1,3 @@
+#!/bin/sh
+# puhu.exe under Wine, callable like the native program (inside the container of check.sh)
+exec wine64 Z:/w/puhu.exe "$@"

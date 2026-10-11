@@ -1,0 +1,10 @@
+# make check-windows, 2026-10-11, ai box; compiler: x86_64-w64-mingw32-gcc (GCC) 16.2.0
+puhu.exe under wine-9.0 (Ubuntu 9.0~repack-4build3):
+  156 speech and interface cases: same output as the Linux build
+  8 sound files (file, redirect, pipe, code pages, PC speaker): same bytes as the Linux build's
+  saving settings: a copy of the voice appears under %APPDATA%\mikropuhe
+  interface: the main screen is drawn: yes
+  interface: typed letters arrive: yes
+  interface: F2 opens the settings screen: yes
+  interface: Ctrl-P opens the settings screen: yes
+  interface: Esc ends the program: yes

@@ -1,0 +1,13 @@
+# Timehouse Oy's files, and what is generated from them: never commit these
+original/files/*
+!original/files/README.md
+port/src/tables.h
+port/src/ui_tables.h
+*.SMP
+*.EXE
+!voices/*.SMP
+# built or regenerable
+port/build/
+port/demo/
+evidence/reference/*.events.json
+__pycache__/

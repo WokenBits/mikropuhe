@@ -1,0 +1,2 @@
+/* resource type 24 = RT_MANIFEST, id 1 = the manifest of an .exe */
+1 24 "puhu.manifest"

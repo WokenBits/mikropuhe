@@ -1,0 +1,16 @@
+# Note: these hashes were made with another first name in the test sentence than the
+# scripts in this copy use, so a new run prints other hashes for the three sophia files.
+# port/tests/portable/edges.cmd in a cmd session on Windows 11, 2026-10-11. Hash order: a (to-file), b (redirected),
+# c (cmd echo piped in, code page 850), d (pcspeaker 386 cone), e (pcspeaker xt none), the file named with ä and ö.
+Active code page: 850
+puhu 1.2 - MikroPuhe 1.0 (Timehouse Oy, 1990) re-implemented in C for Linux, macOS and Windows
+to-file exit 0
+redirected exit 0
+piped-in exit 0
+file-name exit 0
+207463cbc10b1dd04ecd8463e8d6942137efc58dfc8bd14a82106d190368214b
+207463cbc10b1dd04ecd8463e8d6942137efc58dfc8bd14a82106d190368214b
+207463cbc10b1dd04ecd8463e8d6942137efc58dfc8bd14a82106d190368214b
+00002de9b25ce5a4928c8b514c0c133516e6b041107cf742ab4da2683c674244
+b0c274ac52b9a4f16c33e1452e9863dff318db3d1238a36f9c39d98f40c2a7b5
+52f50021b1fbd0b0d97e914f96deda0cb82f122d36330e38e8bcaf7fe4e46d1c

@@ -1,0 +1,15 @@
+# The interface on Windows 11 in the console of an SSH session (ConPTY), driven through a pseudo-terminal, 2026-10-11.
+# Run 1 (keys typed 16 s after start, while the greeting was still playing, are discarded, as in the original):
+main screen, frame characters, key bar        yes yes yes   (1512 bytes)
+typed letters with ä arrive and are shown     NO   (1729 bytes)
+F2 opens the settings                         yes yes   (2372 bytes)
++ changes Korkeus 4 to 5                      yes   (2374 bytes)
+Ctrl-P opens the settings                     yes   (2374 bytes)
+program ended after Esc: yes
+# Run 2 (typing 28 s after start):
+main screen                                   yes   (2378 bytes)
+typed letters with ä arrive and are shown     yes   (1735 bytes)
+Backspace deletes one letter                  yes   (872 bytes)
+Left, Del, x give px                          yes   (868 bytes)
+program ended after Esc: yes
+# Playing: puhu --play of a 3.4 s sentence returned 0 after 3.5 s. Saving (F2 F2 by key script): %APPDATA%\mikropuhe\JANNE.SMP, 39489 bytes.

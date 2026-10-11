@@ -1,0 +1,69 @@
+id	exit	samples	pause_samples	pauses	sha256_u8	tail
+jan-s01-default	0	29959	3135	1	1423bad2084e3fd6a202e06f2562b1c12a127d37ec1785024fa07f47b76f8ccd	/JAN hyvää päivää
+jan-s02-default	0	89565	32208	10	00a83e796274a403a0f82cf79a765bceffa6929ae4b99c25fb2959c267057d82	/JAN tervetuloa, olen mikropuhe 1 piste nolla.
+jan-s03-default	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s04-default	0	63261	23115	7	a86d985539be72b79d3cecaf977dc23b4f0af85478ec4ce695e7159f21bc6dc0	/JAN puhelin 123 markkaa
+jan-s05-default	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s06-default	0	71595	18425	8	609a6895877cc0af921402ba370dacfe73190da8f87bd824dffbc1941f46c6e4	/JAN abcdefghijklmnopqrstuvwxyzåäö
+jan-s07-default	0	363430	109744	31	76fe18785fbc0150a98d5ea374a44ae15eea20f8994b8a7bfc9e04d48a2a2b55	/JAN 1990 12:30 50% 3,5 $100 (suluissa) ala_viiva
+jan-s08-default	0	136717	29503	11	0ab39ea275dfcd31ee504ee0b6e9c231e345b27985730976c23ee38b2a1da3ad	/JAN ässä öljy yö Åbo zeppeliini quiz wc taxi cesium ruotsi
+jan-s09-default	0	79954	56590	13	2dc17b504a1815c13f425b9a65d41f76709724bbd727332960d08b1221dc4de7	/JAN tuli tuuli tulli, taka takka taakka, kisa kissa
+jan-s10-default	0	457129	66898	28	4aa26406c740854ce6cca4fd9cb3aa32049092eecb89ca4e12b0d576cbb64af6	/JAN 0 7 10 11 21 100 101 1000 1234567 1000000000
+kri-s01-default	0	21537	2240	1	1ce8c5be4b94f24bb8eea090106f1547671a4fd3f34a2450a679f731f85a10a9	/KRI hyvää päivää
+kri-s02-default	0	62882	24552	10	71207370937ade8110fec8fc04329534962f5078987f457a540678450caccfe8	/KRI tervetuloa, olen mikropuhe 1 piste nolla.
+kri-s03-default	0	122459	30820	17	978778ddb4f3399731af5c7be6ae1ff3218b6f827e7e66a2ee2fb06a48face30	/KRI Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+kri-s04-default	0	45812	14916	7	22ec6c66b35894ace48f09ab60f29ed9d38078c4aebb15dd775febd6e4784a5f	/KRI puhelin 123 markkaa
+kri-s05-default	0	71344	30604	9	8f0228fc5a7cbd4b743a579d00c3e960e0055823fbb0579ad84832ec396f810f	/KRI Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+kri-s06-default	0	54283	14632	10	e4439337b0dc0b261e585b27dd15cb5d354e3e59da7206dcda98a86c820f5227	/KRI abcdefghijklmnopqrstuvwxyzåäö
+kri-s07-default	0	267296	74816	32	8396c8a73d78a5f8b750790f28038fa2e0407dae86bbdf76b62b1bf5637e350b	/KRI 1990 12:30 50% 3,5 $100 (suluissa) ala_viiva
+kri-s08-default	0	96640	22468	12	7482cac89355ece4f371aa60b7691a0d5b6edf7fe5f46e6bd7a6e9b03356add6	/KRI ässä öljy yö Åbo zeppeliini quiz wc taxi cesium ruotsi
+kri-s09-default	0	55221	45752	13	91468025428c30bee74665e9ad693fb68f49e81d9b418a29178933edccd7bc2e	/KRI tuli tuuli tulli, taka takka taakka, kisa kissa
+kri-s10-default	0	338975	38320	30	63efbd3d5fb9e65aaebd94a1ca4a58d8e6ee81faad563354c4d859530f351f95	/KRI 0 7 10 11 21 100 101 1000 1234567 1000000000
+sop-s01-default	0	28609	2970	1	262c06168603e7e2aae16dfb3e2854a5b9bd7f55a267163ed94f4b7cecf484e8	/SOP hyvää päivää
+sop-s02-default	0	92114	31185	10	2fa5301dd59ba4cb07d418ed4f6498f70e24bb360ebaf8417e634c16cc81d4e5	/SOP tervetuloa, olen mikropuhe 1 piste nolla.
+sop-s03-default	0	172633	41845	15	df63357ed780c483dd57e735b1980196c2b2bdd8cac1065804e8c47475be1331	/SOP Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+sop-s04-default	0	63166	22664	7	969980ad5e3ddd39e67d2d5d84601badb1733b1abbbb8093025a839577e8b64d	/SOP puhelin 123 markkaa
+sop-s05-default	0	105516	34229	9	79c16c798ba20b75f590a4a337183046e9bde147eab81a5ef8338a9977e5d8e5	/SOP Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+sop-s06-default	0	68952	22363	8	b8c2a0af8e9a9ed2fc28e8a90603b06f525673ef7dc4c49d41193aeaeb2c35e3	/SOP abcdefghijklmnopqrstuvwxyzåäö
+sop-s07-default	0	369952	104211	31	f416e36abcd2c4eaf384db3cf91fe539a0802a44cb218a6e187061b937221f65	/SOP 1990 12:30 50% 3,5 $100 (suluissa) ala_viiva
+sop-s08-default	0	129365	31868	11	0d0ec6479f855132b3f7b5de8a23ad20b3617495f91ed77e5b428b5cbec41090	/SOP ässä öljy yö Åbo zeppeliini quiz wc taxi cesium ruotsi
+sop-s09-default	0	80793	54159	13	b9ad50ad2d4f1d686bbbe4ea58523163c8ab704589023f0743c615487824ff8b	/SOP tuli tuuli tulli, taka takka taakka, kisa kissa
+sop-s10-default	0	500026	69186	28	fc55136aae72480a8065bbb44e41ee87018f39ce06673c96492c5f46d345a914	/SOP 0 7 10 11 21 100 101 1000 1234567 1000000000
+jan-s03-nop0	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/NOP0 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-nop0	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/NOP0 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-nop4	0	116087	29721	15	484663395d24726e97e55c94658cda0facdf164407c0316d69a33fbab3a8d75c	/JAN/NOP4 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-nop4	0	68099	30021	9	fb8e80ed401e7665303b2486e05ddcfc6183fbc670e44c910a1e7a131788759d	/JAN/NOP4 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-nop8	0	46165	15309	15	b1cb575fe26651ad1cb624af762b1895576a81d5ade58093c7d8a5d4a5fbc942	/JAN/NOP8 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-nop8	0	26509	24009	9	757425e2c86bd66707ee7aac3af72668ceb8127acb8015c35068fa9309895fc1	/JAN/NOP8 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-kor0	0	170414	44133	15	942c422e3c1b9e9abc8197052d6a13e4946e26b3aa3d35886ca64d8bda3bc8b8	/JAN/KOR0 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-kor0	0	100077	36033	9	4fcd8475754fb48abf58f8da842acc75d33d2070fad173bcf7ea4b407e778c88	/JAN/KOR0 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-kor4	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/KOR4 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-kor4	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/KOR4 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-kor8	0	159930	44133	15	8072c55198fa57d0934bb2a38ec322af27f3247c519e87a1b5d3ae691debff26	/JAN/KOR8 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-kor8	0	94242	36033	9	c4858abbfd6712a74b56f2d82f2642e19a4d4d3e6b327af66c2fb6e4f9eec789	/JAN/KOR8 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-krv0	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/KRV0 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-krv0	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/KRV0 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-krv4	0	177545	44133	15	211148366eda208ec47c55eb8e2707e59bb1393c53ea25800778a61bd98ad877	/JAN/KRV4 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-krv4	0	104722	36033	9	3835be5e3430d20c4234baf77270826d8cdcfe2df1b8721fc19517fe91a21fb2	/JAN/KRV4 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-krv8	0	182275	45137	24	b9d26b4fc1428ef8df262dc334dd9119e4bcc98b3e2352ce0a256c1e7f5fc7ff	/JAN/KRV8 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-krv8	0	107583	36033	9	3ad94072cc202b01a64f2831c76c7186eb2493811740758f790eca9f8ea38ac3	/JAN/KRV8 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-voi0	0	172093	44133	15	16ff1fa9685d83bfe9a0badd49563db0abc01a6a2a612bf291b68d88a37b1c2b	/JAN/VOI0 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-voi0	0	102036	36033	9	26528021d273265e59fb4826deb05877b50e1c5731897157222ec8fe9e17c8aa	/JAN/VOI0 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-voi4	0	172093	44133	15	6fe6562ffafe37bec58a05766d0f8eecff90b449baacdf722f5dc4bd818622f7	/JAN/VOI4 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-voi4	0	102036	36033	9	eca3e09627627969bfd70a43e6142feb306a448b1d603ba870e85dd127145508	/JAN/VOI4 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-voi8	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/VOI8 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-voi8	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/VOI8 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-knp0	0	172093	44133	15	6a0594725ebc6785e2698596a56ec283c8bf90c8e39c16573d48a7ec26fdfc86	/JAN/KNP0 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-knp0	0	102036	36033	9	289bf899b49b7ddef0a1f220d536c07c2aa5e084619e899560dcf26006399997	/JAN/KNP0 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-knp1	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/KNP1 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-knp1	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/KNP1 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-etp0	0	171465	44133	15	89da8ad1bffe01df6f78f1f5f181c4406c0990698763ec05d576fce9f6158cdb	/JAN/ETP0 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-etp0	0	100112	36033	9	ab2df11c76264e584bb1ede4e132fa3e1dbc4edc8467371ec35ff3a5d8b9bcac	/JAN/ETP0 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-etp1	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/ETP1 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-etp1	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/ETP1 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-nop9	0	116087	29721	15	484663395d24726e97e55c94658cda0facdf164407c0316d69a33fbab3a8d75c	/JAN/NOP9 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-nop9	0	68099	30021	9	fb8e80ed401e7665303b2486e05ddcfc6183fbc670e44c910a1e7a131788759d	/JAN/NOP9 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-kor9	0	172093	44133	15	1693b3acc3908436a5348091dd530037612d3d343588cbe0b65b399be5a7d7f4	/JAN/KOR9 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-kor9	0	102036	36033	9	f7d750595859a479a0ce78158283748f29d63fce69d03c142b1571c2e0629227	/JAN/KOR9 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
+jan-s03-voi9	0	172093	44133	15	6fe6562ffafe37bec58a05766d0f8eecff90b449baacdf722f5dc4bd818622f7	/JAN/VOI9 Kaikki ihmiset syntyvät vapaina ja tasavertaisina arvoltaan ja oikeuksiltaan.
+jan-s05-voi9	0	102036	36033	9	eca3e09627627969bfd70a43e6142feb306a448b1d603ba870e85dd127145508	/JAN/VOI9 Onko tämä kysymys? Kyllä on! Ehkä... niin: ei; tai, joo.
